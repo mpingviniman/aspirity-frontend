@@ -63,7 +63,7 @@ class Todos extends React.Component {
         load: 0
       });
       newObj.position = this.state.items.length;
-      let response = await fetch('http://localhost:3000/api/todo/', {
+      let response = await fetch('http://37.139.19.218:4000/api/todo/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -85,7 +85,7 @@ class Todos extends React.Component {
       this.setState({
         load: 0
       });
-      await fetch('http://localhost:3000/api/todo/' + newObj._id, {
+      await fetch('http://37.139.19.218:4000/api/todo/' + newObj._id, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -111,7 +111,7 @@ class Todos extends React.Component {
       this.setState({
         load: 0
       });
-      await fetch('http://localhost:3000/api/todo/' + _id, {
+      await fetch('http://37.139.19.218:4000/api/todo/' + _id, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
@@ -134,7 +134,7 @@ class Todos extends React.Component {
 
       Promise.all(items.map(async(item, index) => {
         item.position = index;
-        await fetch('http://localhost:3000/api/todo/' + item._id, {
+        await fetch('http://37.139.19.218:4000/api/todo/' + item._id, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
