@@ -77,6 +77,8 @@ class Todos extends React.Component {
       this.forceUpdate();
     } catch (error) {
       console.error(error);
+      this.state.load = 1;
+      this.forceUpdate();
     }
   }
 
@@ -97,6 +99,8 @@ class Todos extends React.Component {
       this.forceUpdate();
     } catch (error) {
       console.error(error);
+      this.state.load = 1;
+      this.forceUpdate();
     }
   }
 
@@ -122,6 +126,9 @@ class Todos extends React.Component {
       });
     } catch (e) {
       console.error(e);
+      this.setState({
+        load: 1
+      });
     }
   }
 
