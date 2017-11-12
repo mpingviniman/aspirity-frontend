@@ -76,7 +76,7 @@ class Todos extends React.Component {
       this.state.load = 1;
       this.forceUpdate();
     } catch (error) {
-      console.error(error);
+      alert("Не могу добавить");
       this.state.load = 1;
       this.forceUpdate();
     }
@@ -87,18 +87,20 @@ class Todos extends React.Component {
       this.setState({
         load: 0
       });
-      await fetch('http://37.139.19.218:4000/api/todo/' + newObj._id, {
+      let response = await fetch('http://37.139.19.218:4000/api/todo/' + newObj._id, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(newObj)
       });
+      let json = await response.json();
       this.state.items[index] = newObj;
+
       this.state.load = 1;
       this.forceUpdate();
     } catch (error) {
-      console.error(error);
+      alert("Не могу обновить");
       this.state.load = 1;
       this.forceUpdate();
     }
@@ -115,17 +117,18 @@ class Todos extends React.Component {
       this.setState({
         load: 0
       });
-      await fetch('http://37.139.19.218:4000/api/todo/' + _id, {
+      let response = await fetch('http://37.139.19.218:4000/api/todo/' + _id, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
         }
       });
+      let json = await response.json();
       this.setState({
         load: 1
       });
     } catch (e) {
-      console.error(e);
+      alert("Не могу удалить!");
       this.setState({
         load: 1
       });
