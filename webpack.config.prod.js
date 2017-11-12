@@ -42,14 +42,7 @@ module.exports = {
       },
       exclude: [/\.min\.js$/gi]
     }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0
-    })
+    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/])
   ],
   module: {
     rules: [
