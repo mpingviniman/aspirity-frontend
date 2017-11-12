@@ -87,7 +87,7 @@ class T extends React.Component {
       let currentDate = new Date();
       currentDate.setHours(0, 0, 0, 0);
       let checkDate = new Date(e.target.term.value);
-      if (currentDate > checkDate) {
+      if (currentDate > checkDate || e.target.term.value.trim() === '') {
         this.state.error[1] = true;
       }
     } catch (e) {

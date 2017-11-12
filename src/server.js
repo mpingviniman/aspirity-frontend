@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDom from 'react-dom/server';
 import Router from 'koa-router';
 import App from './app/components/app';
-import { green, red } from 'material-ui/colors';
 import serve from 'koa-static';
 import favicon from 'koa-favicon';
 import logger from 'koa-logger';
@@ -17,12 +16,13 @@ import preset from 'jss-preset-default';
 import fetchTodos from '../src/app/utils';
 const app = new Koa();
 const posts = new Router();
+
+app.use(logger());
+app.use(favicon(path.resolve(__dirname, './public/favicon.ico')));
+app.use(serve(path.resolve(__dirname, './public')));
 posts.get('/', async(ctx, next) => {
   ctx.body = await renderHTML();
 });
-app.use(logger());
-app.use(favicon(path.resolve(__dirname, '/public/favicon.ico')));
-app.use(serve(path.resolve(__dirname, '/public')));
 app.use(posts.routes());
 
 async function renderHTML() {
@@ -50,8 +50,8 @@ async function renderHTML() {
       </head>
       <body>
         <div id="app">${html}</div>
-        <script type="application/javascript" src="vendor.bundle.js.gz"></script>
-        <script type="application/javascript" src="app.bundle.js.gz"></script>
+        <script type="application/javascript" src="vendor.bundle.js"></script>
+        <script type="application/javascript" src="app.bundle.js"></script>
         <style id="jss-server-side">${css}</style>
       </body>
     </html>
